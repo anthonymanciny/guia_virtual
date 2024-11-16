@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
 
-const DATABASE_NAME = 'guia'
+const DATABASE_NAME = 'guia_teste'
 const USER_NAME = 'root'
 const PASSWORD = ''
 const HOST = 'localhost'

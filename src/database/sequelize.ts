@@ -1,13 +1,17 @@
 import { Sequelize } from 'sequelize'
+import dotenv from 'dotenv'
 
-const DATABASE_NAME = 'guia_teste'
-const USER_NAME = 'root'
-const PASSWORD = ''
-const HOST = 'localhost'
+dotenv.config() // Carrega as variáveis de ambiente do arquivo .env
+
+const DATABASE_NAME = process.env.DATABASE_NAME
+const USER_NAME = process.env.USER_NAME
+const PASSWORD = process.env.PASSWORD
+const HOST = process.env.HOST
+const DIALECT = process.env.DIALECT
 
 const sequelize = new Sequelize(DATABASE_NAME, USER_NAME, PASSWORD, {
     host: HOST,
-    dialect: 'mysql',
+    dialect: DIALECT,
 })
 
 export default sequelize

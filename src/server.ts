@@ -1,12 +1,10 @@
 import express, { Request, Response } from 'express';
 import sequelize from './database/sequelize'; // Conexão com o banco de dados
-import { UsuarioRouter } from './routes/usuario-router'; // Importando o UsuarioRouter
+import router from './routes/app-routes';
 
-const PORT = 3000;
+
+const PORT = process.env.PORT;
 const app = express();
-
-// Criando uma instância do UsuarioRouter
-const usuarioRouter = new UsuarioRouter();
 
 // Middleware para interpretar JSON
 app.use(express.json());
@@ -16,8 +14,8 @@ app.get('/api', (req: Request, res: Response) => {
     res.send('Bem-vindo ao Guia Virtual');
 });
 
-// Usando as rotas de usuário no path '/usuarios'
-app.use('/usuarios', usuarioRouter.router);
+// Usando as rotas do módulo
+app.use(router);
 
 // Função de inicialização que conecta ao banco e sobe o servidor
 async function initialize() {

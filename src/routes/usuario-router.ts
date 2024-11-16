@@ -14,7 +14,7 @@ export class UsuarioRouter {
             this.usuarioController.criar(req, res);
         });
 
-        this.router.get('/buscar', (req, res) => {
+        this.router.get('/buscar/:id', (req, res) => {
             this.usuarioController.buscar(req, res);
         });
 

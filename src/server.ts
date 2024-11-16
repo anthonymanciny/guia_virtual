@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import sequelize from './database/sequelize'; // Conexão com o banco de dados
 import router from './routes/app-routes';
+import { authenticateJWT } from './middleware/auth';
 
 
 const PORT = process.env.PORT;
@@ -16,6 +17,13 @@ app.get('/api', (req: Request, res: Response) => {
 
 // Usando as rotas do módulo
 app.use(router);
+
+// Rota de autenticação (registro e login)
+
+// Exemplo de rota protegida
+app.get('/dashboard', authenticateJWT, (req: Request, res: Response) => {
+  res.send('Bem-vindo ao Dashboard');
+});
 
 // Função de inicialização que conecta ao banco e sobe o servidor
 async function initialize() {

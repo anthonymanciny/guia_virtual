@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { UsuarioModel } from '../../models/usuario-model';
 
 // Variáveis de ambiente
-const JWT_SECRET = process.env.JWT_SECRET || 'secret_key'; // Altere isso em um ambiente de produção
+const JWT_SECRET = process.env.JWT_SECRET // Altere isso em um ambiente de produção
 
 // Função para login
 export const login = async (req: Request, res: Response) => {

@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import sequelize from './database/sequelize'; // Conexão com o banco de dados
-import router from './routes/app-routes';
-import { authenticateJWT } from './middleware/auth';
+import router from './routes/app-routes';// Conexão com as rotas
 
 
 const PORT = process.env.PORT;
@@ -13,17 +12,13 @@ app.use(express.json());
 // Rota inicial
 app.get('/api', (req: Request, res: Response) => {
     res.send('Bem-vindo ao Guia Virtual');
+
 });
 
 // Usando as rotas do módulo
 app.use(router);
 
-// Rota de autenticação (registro e login)
 
-// Exemplo de rota protegida
-app.get('/dashboard', authenticateJWT, (req: Request, res: Response) => {
-  res.send('Bem-vindo ao Dashboard');
-});
 
 // Função de inicialização que conecta ao banco e sobe o servidor
 async function initialize() {

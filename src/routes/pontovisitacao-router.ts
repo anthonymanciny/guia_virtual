@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import { PontoVisitacaoController } from '../controllers/pontovisitacao-controller';
+import { authenticateJWT } from '../middleware/auth';
 export class PontoVisitacaoRouter {
     public readonly router!: Router;
     private pontovisitacaoController: PontoVisitacaoController;
@@ -9,7 +10,7 @@ export class PontoVisitacaoRouter {
         this.pontovisitacaoController = new PontoVisitacaoController();
 
         // Rota para criar um novo ponto
-        this.router.post('/criar', (req, res) => {
+        this.router.post('/criar',authenticateJWT, (req, res) => {
             this.pontovisitacaoController.criar(req, res);
         });
 
@@ -24,12 +25,12 @@ export class PontoVisitacaoRouter {
         });
 
         // Rota para alterar um ponto existente
-        this.router.put('/alterar/:id', (req, res) => {
+        this.router.put('/alterar/:id',authenticateJWT, (req, res) => {
             this.pontovisitacaoController.alterar(req, res);
         });
 
         // Rota para excluir um ponto pelo ID
-        this.router.delete('/excluir/:id', (req, res) => {
+        this.router.delete('/excluir/:id',authenticateJWT, (req, res) => {
             this.pontovisitacaoController.excluir(req, res);
         });
     }

@@ -41,6 +41,34 @@ export class PontoVisitacaoController {
             res.status(500).json(erro.message);
         }
     }
+    public async buscarPorIdLocalVisitacao(req: Request, res: Response) {
+        if (!req.params.idLocalVisitacao) {
+          res.status(400).json({ message: 'Parâmetro de busca não informado' });
+          return;
+        }
+    
+        const idLocalVisitacao = parseInt(req.params.idLocalVisitacao);
+    
+        if (isNaN(idLocalVisitacao)) {
+          res.status(400).json({ message: 'Parâmetro de busca inválido' });
+          return;
+        }
+    
+        try {
+          const pontos = await this.pontovisitacaoService.buscarPorIdLocalVisitacao(idLocalVisitacao);
+    
+          if (!pontos || pontos.length === 0) {
+            res.status(404).json({ message: 'Nenhum ponto de visitação encontrado' });
+            return;
+          }
+    
+          res.status(200).json(pontos);
+        } catch (erro: any) {
+          res.status(500).json({ message: erro.message });
+        }
+      }
+
+
 
     public async listar(req: Request, res: Response) {
         try {

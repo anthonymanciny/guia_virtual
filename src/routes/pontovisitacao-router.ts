@@ -18,6 +18,10 @@ export class PontoVisitacaoRouter {
         this.router.get('/buscar/:id', (req, res) => {
             this.pontovisitacaoController.buscar(req, res);
         });
+        
+        this.router.get('/buscarlocal/:idLocalVisitacao', (req, res) => {
+            this.pontovisitacaoController.buscarPorIdLocalVisitacao(req, res);
+          });
 
         // Rota para listar todos os pontos
         this.router.get('/listar', (req, res) => {

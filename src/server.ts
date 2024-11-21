@@ -1,13 +1,21 @@
 import express, { Request, Response } from 'express';
 import sequelize from './database/sequelize'; // Conexão com o banco de dados
 import router from './routes/app-routes';// Conexão com as rotas
-
+import cors from 'cors'
 
 const PORT = process.env.PORT;
 const app = express();
 
-// Middleware para interpretar JSON
-app.use(express.json());
+// Configurações do CORS
+const corsOptions = {
+    origin: 'http://localhost:3000', // Substitua pela URL do seu frontend **JUJU
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+};
+
+// Middleware
+app.use(cors(corsOptions)); // Aplica o CORS com as configurações
+app.use(express.json()); // Suporte a JSON no corpo das requisições
 
 // Rota inicial
 app.get('/api', (req: Request, res: Response) => {

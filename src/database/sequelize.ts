@@ -9,6 +9,10 @@ const PASSWORD = process.env.PASSWORD
 const HOST = process.env.HOST
 const DIALECT = process.env.DIALECT
 
+
+
+
+
 const sequelize = new Sequelize(DATABASE_NAME, USER_NAME, PASSWORD, {
     host: HOST,
     dialect: DIALECT,

@@ -8,7 +8,7 @@ export class MulterRouter {
         this.router = express.Router();
         
         // Rota POST para upload de arquivo
-        this.router.post('/', specificFileUpload.single('profilePic'), (req: Request, res: Response) => {
+        this.router.post('/', specificFileUpload.single('profilePic'), (req, res) => {
             if (!req.file) {
                 return res.status(400).send('Nenhum arquivo enviado.');
             }

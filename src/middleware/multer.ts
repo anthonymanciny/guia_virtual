@@ -7,7 +7,6 @@ const storage: StorageEngine = multer.diskStorage({
     cb(null, path.join(__dirname, '../uploads')); // Define a pasta de upload
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
     cb(null,`${Date.now()}-${file.originalname}`);
   },
 });

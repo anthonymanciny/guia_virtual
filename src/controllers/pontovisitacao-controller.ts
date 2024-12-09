@@ -41,6 +41,7 @@ export class PontoVisitacaoController {
             res.status(500).json(erro.message);
         }
     }
+
     public async buscarPorIdLocalVisitacao(req: Request, res: Response) {
         if (!req.params.idLocalVisitacao) {
           res.status(400).json({ message: 'Parâmetro de busca não informado' });
@@ -66,9 +67,7 @@ export class PontoVisitacaoController {
         } catch (erro: any) {
           res.status(500).json({ message: erro.message });
         }
-      }
-
-
+    }
 
     public async listar(req: Request, res: Response) {
         try {

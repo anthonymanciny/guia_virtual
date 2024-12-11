@@ -2,7 +2,7 @@ export interface IPontoVisitacao {
     idPontoVisitacao: number;
     idLocalVisitacao: number;
     nome: string;
-    imagem?: Buffer; 
-    audio?: Buffer;  
+    imagem?: string; 
+    audio?: string;  
     texto?: string;  
 }

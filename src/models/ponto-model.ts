@@ -5,8 +5,8 @@ export class PontoVisitacaoModel extends Model {
   private _idPontoVisitacao!: number;
   private _idLocalVisitacao!: number;
   private _nome!: string;
-  private _imagem?: Buffer 
-  private _audio?: Buffer 
+  private _imagem?: string 
+  private _audio?: string 
   private _texto?: string 
 
   get idPontoVisitacao(): number {
@@ -33,19 +33,19 @@ export class PontoVisitacaoModel extends Model {
     this._nome = value;
   }
 
-  get imagem(): Buffer | undefined {
+  get imagem(): string | undefined {
     return this._imagem;
   }
 
-  set imagem(value: Buffer | undefined) {
+  set imagem(value: string | undefined) {
     this._imagem = value;
   }
 
-  get audio(): Buffer | undefined {
+  get audio(): string | undefined {
     return this._audio;
   }
 
-  set audio(value: Buffer | undefined) {
+  set audio(value: string | undefined) {
     this._audio = value;
   }
 
@@ -76,11 +76,11 @@ PontoVisitacaoModel.init(
       allowNull: false,
     },
     imagem: {
-      type: DataTypes.BLOB('long'),
+      type: DataTypes.STRING(255), // Para armazenar o caminho ou URL
       allowNull: true,
     },
     audio: {
-      type: DataTypes.BLOB('long'),
+      type: DataTypes.STRING(255), // Para armazenar o caminho ou URL
       allowNull: true,
     },
     texto: {

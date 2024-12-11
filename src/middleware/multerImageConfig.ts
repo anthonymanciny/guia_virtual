@@ -4,7 +4,7 @@ import path from 'path';
 // Configuração de armazenamento
 const storage: StorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads')); // Define a pasta de upload
+    cb(null, path.join(__dirname, '../uploads/image')); // Define a pasta de upload
   },
   filename: (req, file, cb) => {
     cb(null,`${Date.now()}-${file.originalname}`);
@@ -12,10 +12,10 @@ const storage: StorageEngine = multer.diskStorage({
 });
 
 // Configuração do Multer
-const specificFileUpload = multer({
+const imageup = multer({
   storage,
   limits: {
-    fileSize: 5 * 1024 * 1024, // Limite de 5 MB
+    fileSize: 10 * 1024 * 1024, // Limite de 5 MB
   },
   fileFilter: (req, file, cb) => {
     // Aceita apenas imagens JPEG e PNG
@@ -28,4 +28,4 @@ const specificFileUpload = multer({
   },
 });
 
-export default specificFileUpload;
+export default imageup;

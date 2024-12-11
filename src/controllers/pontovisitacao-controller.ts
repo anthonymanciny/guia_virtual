@@ -10,12 +10,12 @@ export class PontoVisitacaoController {
     
     public async criar(req: Request, res: Response) {
         if (Object.keys(req.body).length === 0) {
-            res.status(400).json({ message: 'O corpo da requisição está vazio' });
-            return;
+            return res.status(400).json({ message: 'O corpo da requisição está vazio' });
         }
-    
+
         try {
-            await this.pontovisitacaoService.criar(req.body);
+            // Passar os arquivos do request para o serviço
+            await this.pontovisitacaoService.criar(req.body, req.files);
             res.status(201).json({ message: 'Ponto criado com sucesso' });
         } catch (erro: any) {
             res.status(500).json(erro.message);
@@ -24,17 +24,15 @@ export class PontoVisitacaoController {
 
     public async buscar(req: Request, res: Response) {
         if (!req.params.id) {
-            res.status(400).json({ message: 'Parâmetro de busca não informado' });
-            return;
+            return res.status(400).json({ message: 'Parâmetro de busca não informado' });
         }
-    
+
         const id = parseInt(req.params.id);
-    
+
         try {
             const ponto = await this.pontovisitacaoService.buscar(id);
             if (!ponto) {
-                res.status(404).json({ message: 'Ponto não encontrado' });
-                return;
+                return res.status(404).json({ message: 'Ponto não encontrado' });
             }
             res.status(200).json(ponto);
         } catch (erro: any) {
@@ -44,28 +42,25 @@ export class PontoVisitacaoController {
 
     public async buscarPorIdLocalVisitacao(req: Request, res: Response) {
         if (!req.params.idLocalVisitacao) {
-          res.status(400).json({ message: 'Parâmetro de busca não informado' });
-          return;
+            return res.status(400).json({ message: 'Parâmetro de busca não informado' });
         }
-    
+
         const idLocalVisitacao = parseInt(req.params.idLocalVisitacao);
-    
+
         if (isNaN(idLocalVisitacao)) {
-          res.status(400).json({ message: 'Parâmetro de busca inválido' });
-          return;
+            return res.status(400).json({ message: 'Parâmetro de busca inválido' });
         }
-    
+
         try {
-          const pontos = await this.pontovisitacaoService.buscarPorIdLocalVisitacao(idLocalVisitacao);
-    
-          if (!pontos || pontos.length === 0) {
-            res.status(404).json({ message: 'Nenhum ponto de visitação encontrado' });
-            return;
-          }
-    
-          res.status(200).json(pontos);
+            const pontos = await this.pontovisitacaoService.buscarPorIdLocalVisitacao(idLocalVisitacao);
+
+            if (!pontos || pontos.length === 0) {
+                return res.status(404).json({ message: 'Nenhum ponto de visitação encontrado' });
+            }
+
+            res.status(200).json(pontos);
         } catch (erro: any) {
-          res.status(500).json({ message: erro.message });
+            res.status(500).json({ message: erro.message });
         }
     }
 
@@ -80,17 +75,15 @@ export class PontoVisitacaoController {
 
     public async alterar(req: Request, res: Response) {
         if (!req.params.id) {
-            res.status(400).json({ message: 'Parâmetro de busca não encontrado' });
-            return;
+            return res.status(400).json({ message: 'Parâmetro de busca não encontrado' });
         }
-    
+
         if (Object.keys(req.body).length === 0) {
-            res.status(400).json({ message: 'O corpo da requisição não foi informado' });
-            return;
+            return res.status(400).json({ message: 'O corpo da requisição não foi informado' });
         }
-    
+
         const id = parseInt(req.params.id);
-    
+
         try {
             await this.pontovisitacaoService.alterar(id, req.body);
             res.status(200).json({ message: 'Ponto alterado com sucesso' });
@@ -101,12 +94,11 @@ export class PontoVisitacaoController {
 
     public async excluir(req: Request, res: Response) {
         if (!req.params.id) {
-            res.status(400).json({ message: 'Parâmetro de busca não informado' });
-            return;
+            return res.status(400).json({ message: 'Parâmetro de busca não informado' });
         }
-    
+
         const id = parseInt(req.params.id);
-    
+
         try {
             await this.pontovisitacaoService.delete(id);
             res.status(200).json({ message: 'Ponto excluído com sucesso' });

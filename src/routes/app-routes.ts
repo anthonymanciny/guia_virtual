@@ -3,8 +3,7 @@ import { UsuarioRouter } from './usuario-router';
 import { LocalVisitacaoRouter } from './localvisitacao-router';
 import { PontoVisitacaoRouter } from './pontovisitacao-router';
 import { AuthRouter } from './auth-route';
-import { AudioRouter } from './audio-routes';
-import { ImageRouter } from './image-routes';
+// import { UploadRouter } from './upload-routes';
 
 const router = Router();
 
@@ -12,17 +11,16 @@ const router = Router();
 const usuarioRouter = new UsuarioRouter();
 const localVisitacaoRouter = new LocalVisitacaoRouter();
 const pontoVisitacaoRouter = new PontoVisitacaoRouter();
-const authRouter = new AuthRouter()
-const audioRouter = new AudioRouter
-const imageRouter = new ImageRouter
+const authRouter = new AuthRouter();
+// const uploadRouter = new UploadRouter();
 
 // Registrando as rotas
 router.use('/usuarios', usuarioRouter.router);
 router.use('/locais', localVisitacaoRouter.router);
 router.use('/pontos', pontoVisitacaoRouter.router);
 router.use('/auth', authRouter.router);
-router.use('/upload',audioRouter.router);
-router.use('/upload',imageRouter.router);
+// router.use('/upload',uploadRouter.router);
+
 
 
 

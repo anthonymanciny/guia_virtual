@@ -39,6 +39,7 @@ LocalVisitacaoModel.init(
           type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
+          field: 'idlocal_visitacao',
       },
       nome: {
           type: DataTypes.STRING(255),

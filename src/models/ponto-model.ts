@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../database/sequelize';
+import { LocalVisitacaoModel } from './localvisitacao-model';
 
 export class PontoVisitacaoModel extends Model {
   private _idPontoVisitacao!: number;
@@ -95,3 +96,11 @@ PontoVisitacaoModel.init(
     timestamps: false,
   }
 );
+
+// Definir a associação entre os modelos
+PontoVisitacaoModel.belongsTo(LocalVisitacaoModel, {
+  foreignKey: 'idLocalVisitacao',
+});
+LocalVisitacaoModel.hasMany(PontoVisitacaoModel, {
+  foreignKey: 'idLocalVisitacao',
+});

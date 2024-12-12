@@ -4,14 +4,21 @@ import path from 'path';
 // Configuração de armazenamento dinâmica
 const storage: StorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Define a pasta de upload com base no tipo de arquivo
+    // Lê o nome do campo de entrada no formulário
+    const fieldName = file.fieldname;
+
+    // Se o campo for "imagemMapa", salva na pasta "mapa"
     if (file.mimetype.startsWith('audio')) {
       cb(null, path.join(__dirname, '../uploads/audio'));
     } else if (file.mimetype.startsWith('image')) {
+    if (fieldName === 'mapa') {
+      cb(null, path.join(__dirname, '../uploads/mapa'));
+    } else if (file.mimetype.startsWith('image')) {
+      // Se for uma imagem, mas não for "imagemMapa", salva na pasta "image"
       cb(null, path.join(__dirname, '../uploads/image'));
     } else {
       cb(new Error('Tipo de arquivo não suportado'), '');
-    }
+    }}
   },
   filename: (req, file, cb) => {
     // Define o nome do arquivo com timestamp

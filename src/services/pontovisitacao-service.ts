@@ -10,6 +10,7 @@ export class PontoVisitacaoService {
           // Verifique se os arquivos foram recebidos
           let imagem = '';
           let audio = '';
+          let mapa = '';
       
           if (files && files.image && files.image[0]) {
             // Salva o arquivo de imagem e retorna o caminho
@@ -20,6 +21,11 @@ export class PontoVisitacaoService {
             // Salva o arquivo de áudio e retorna o caminho
             audio = path.join(__dirname, './uploads/audio');
           }
+
+          if (files && files.mapa && files.mapa[0]) {
+            // Salva o arquivo de mapa e retorna o caminho
+            mapa = path.join(__dirname, './uploads/mapa');
+          }
       
           // Criação do novo item no banco de dados
           await PontoVisitacaoModel.create({
@@ -27,6 +33,7 @@ export class PontoVisitacaoService {
             nome: novo_item.nome,
             imagem: imagem, // Caminho da imagem no servidor
             audio: audio,   // Caminho do áudio no servidor
+            mapa:mapa,
             texto: novo_item.texto,
           });
       
@@ -70,6 +77,7 @@ export class PontoVisitacaoService {
                 ponto.idLocalVisitacao = item.idLocalVisitacao;
                 ponto.nome = item.nome;
                 ponto.imagem = item.imagem;
+                ponto.mapa = item.mapa;
                 ponto.audio = item.audio;
                 ponto.texto = item.texto;
                 await ponto.save();

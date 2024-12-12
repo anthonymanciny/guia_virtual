@@ -3,6 +3,7 @@ export interface IPontoVisitacao {
     idLocalVisitacao: number;
     nome: string;
     imagem?: string; 
+    mapa?:string;
     audio?: string;  
     texto?: string;  
 }

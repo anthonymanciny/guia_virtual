@@ -3,6 +3,7 @@ CREATE TABLE `tbl_ponto_visitacao` (
   `idponto_visitacao` INT NOT NULL AUTO_INCREMENT COMMENT 'Código do Ponto de Visitação',
   `Nome` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Nome do Ponto de Visitação (Ex: Sala de Esculturas)',
   `Imagem` LONGBLOB COMMENT 'Arquivo de imagem do ponto de visitação',
+  `Mapa` LONGBLOB COMMENT 'Arquivo de Mapa do ponto de visitação',
   `Audio` LONGBLOB COMMENT 'Arquivo de áudio do ponto de visitação',
   `Texto` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT 'Texto explicativo do Ponto de Visitação',
   PRIMARY KEY (`idponto_visitacao`),

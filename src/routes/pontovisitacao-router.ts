@@ -18,7 +18,11 @@ export class PontoVisitacaoRouter {
         this.router.post(
             '/criar',
             authenticateJWT, // Middleware de autenticação JWT
-            upload.fields([{ name: 'image', maxCount: 1 }, { name: 'audio', maxCount: 1 }]), // Middleware de upload de arquivos
+            upload.fields(
+                [{ name: 'image', maxCount: 1 }, 
+                 { name: 'mapa', maxCount: 1 }, 
+                 { name: 'audio', maxCount: 1 }
+                ]), // Middleware de upload de arquivos
             (req, res) => {
                 this.pontovisitacaoController.criar(req, res); // Chama o método criar do controller
             }

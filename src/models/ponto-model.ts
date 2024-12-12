@@ -7,6 +7,7 @@ export class PontoVisitacaoModel extends Model {
   private _idLocalVisitacao!: number;
   private _nome!: string;
   private _imagem?: string 
+  private _mapa?:string
   private _audio?: string 
   private _texto?: string 
 
@@ -40,6 +41,14 @@ export class PontoVisitacaoModel extends Model {
 
   set imagem(value: string | undefined) {
     this._imagem = value;
+  }
+
+  get mapa(): string | undefined {
+    return this._mapa;
+  }
+
+  set mapa(value: string | undefined) {
+    this._mapa = value;
   }
 
   get audio(): string | undefined {
@@ -77,6 +86,10 @@ PontoVisitacaoModel.init(
       allowNull: false,
     },
     imagem: {
+      type: DataTypes.STRING(255), // Para armazenar o caminho ou URL
+      allowNull: true,
+    },
+    mapa: {
       type: DataTypes.STRING(255), // Para armazenar o caminho ou URL
       allowNull: true,
     },

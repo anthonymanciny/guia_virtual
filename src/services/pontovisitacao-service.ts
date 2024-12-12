@@ -13,20 +13,21 @@ export class PontoVisitacaoService {
           let mapa = '';
       
           if (files && files.image && files.image[0]) {
-            // Salva o arquivo de imagem e retorna o caminho
-            imagem = path.join(__dirname, './uploads/image');
-          }
-      
-          if (files && files.audio && files.audio[0]) {
-            // Salva o arquivo de áudio e retorna o caminho
-            audio = path.join(__dirname, './uploads/audio');
-          }
+            // Concatena o caminho base com o nome do arquivo
+            imagem = path.join(__dirname, './uploads/image', files.image[0].filename);
+        }
 
-          if (files && files.mapa && files.mapa[0]) {
-            // Salva o arquivo de mapa e retorna o caminho
-            mapa = path.join(__dirname, './uploads/mapa');
-          }
-      
+        if (files && files.audio && files.audio[0]) {
+            // Concatena o caminho base com o nome do arquivo
+            audio = path.join(__dirname, './uploads/audio', files.audio[0].filename);
+        }
+
+        if (files && files.mapa && files.mapa[0]) {
+            // Concatena o caminho base com o nome do arquivo
+            mapa = path.join(__dirname, './uploads/mapa', files.mapa[0].filename);
+        }      
+
+        
           // Criação do novo item no banco de dados
           await PontoVisitacaoModel.create({
             idLocalVisitacao: novo_item.idLocalVisitacao,

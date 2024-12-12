@@ -21,8 +21,9 @@ const storage: StorageEngine = multer.diskStorage({
     }}
   },
   filename: (req, file, cb) => {
-    // Define o nome do arquivo com timestamp
-    cb(null, `${Date.now()}-${file.originalname}`);
+    // Define o nome do arquivo com timestamp para evitar duplicações
+    const uniqueName = `${Date.now()}-${file.originalname}`;
+    cb(null, uniqueName);
   },
 });
 
@@ -46,5 +47,7 @@ const upload = multer({
   },
   fileFilter,
 });
+
+
 
 export default upload;

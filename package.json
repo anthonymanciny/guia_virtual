@@ -5,6 +5,8 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node .",
+    "create": "node build/database/create-database.js", 
+    "drop": "node build/database/drop-database.js",  
     "watch": "tsx watch src/server.ts"
   },
   "keywords": [],
@@ -20,7 +22,7 @@
     "jsonwebtoken": "^9.0.2",
     "md5": "^2.3.0",
     "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.11.4",
+    "mysql2": "^3.11.5",
     "nodemailer": "^6.9.16",
     "sequelize": "^6.37.5",
     "sequelize-cli": "^6.6.2",

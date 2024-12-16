@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import sequelize from './database/sequelize'; // Conexão com o banco de dados
 import router from './routes/app-routes';// Conexão com as rotas
 import cors from 'cors'
+import path from 'path';
 
 const PORT = process.env.PORT;
 const app = express();
@@ -12,13 +13,14 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
 };
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Middleware
 app.use(cors(corsOptions)); // Aplica o CORS com as configurações
 app.use(express.json()); // Suporte a JSON no corpo das requisições
 
 // Rota inicial
-app.get('/api', (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
     res.send('Bem-vindo ao Guia Virtual');
 
 });

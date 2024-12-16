@@ -12,20 +12,20 @@ export class PontoVisitacaoService {
           let audio = '';
           let mapa = '';
       
+          const PORT = process.env.PORT;
+          const BASE_URL = `http://localhost:${PORT}`; // Substitua pelo domínio do seu backend em produção
+
           if (files && files.image && files.image[0]) {
-            // Concatena o caminho base com o nome do arquivo
-            imagem = path.join(__dirname, './uploads/image', files.image[0].filename);
-        }
-
-        if (files && files.audio && files.audio[0]) {
-            // Concatena o caminho base com o nome do arquivo
-            audio = path.join(__dirname, './uploads/audio', files.audio[0].filename);
-        }
-
-        if (files && files.mapa && files.mapa[0]) {
-            // Concatena o caminho base com o nome do arquivo
-            mapa = path.join(__dirname, './uploads/mapa', files.mapa[0].filename);
-        }      
+              imagem = `${BASE_URL}/uploads/image/${files.image[0].filename}`;
+          }
+          
+          if (files && files.audio && files.audio[0]) {
+              audio = `${BASE_URL}/uploads/audio/${files.audio[0].filename}`;
+          }
+          
+          if (files && files.mapa && files.mapa[0]) {
+              mapa = `${BASE_URL}/uploads/mapa/${files.mapa[0].filename}`;
+          }    
 
         
           // Criação do novo item no banco de dados
